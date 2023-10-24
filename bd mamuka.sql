@@ -6,17 +6,17 @@ USE bd_mamuka;
 CREATE TABLE tb_usuario(
 id BINARY(16) NOT NULL,
 nome VARCHAR(255) NOT NULL,
-cpf INT(11) NOT NULL UNIQUE,
+cpf VARCHAR(255) NOT NULL UNIQUE,
 dataNascimento DATE,
-stautsAtividade BOOL,
+statusAtividade BOOL,
 departamento VARCHAR(255) NOT NULL,
-responsavel VARCHAR(255) NOT NULL,
+responsavel BINARY(16) NOT NULL,
 perfil VARCHAR(255) NOT NULL,
 cargo VARCHAR(255) NOT NULL,
-email VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE,
 id_tipoUsuario BINARY(16) NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (id_tipoUsuario) REFERENCES tb_usuario (id)
+FOREIGN KEY (id_tipoUsuario) REFERENCES tb_usuario(id)
 );
 
 CREATE TABLE tb_tipoUsuario (
@@ -33,7 +33,7 @@ dataInicio DATETIME,
 dataConclusao DATETIME,
 id_gestor BINARY(16),
 PRIMARY KEY (id),
-FOREIGN KEY (id_gestor) REFERENCES tb_projeto (id)
+FOREIGN KEY (id_gestor) REFERENCES tb_usuario (id)
 );
 
 CREATE TABLE tb_tarefa (
